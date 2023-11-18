@@ -1,11 +1,11 @@
 import { cn } from '@/utils/classNames';
-import { NavItemType } from './Sidebar.types';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { NavItem } from '@/types/nav.types';
 
 type NavItemProps = {
-  item: NavItemType;
+  item: NavItem;
   secondary?: boolean;
   isExpanded?: boolean;
   dir: 'ltr' | 'rtl';
@@ -23,7 +23,7 @@ const NavItem = ({ item, secondary, isExpanded, dir }: NavItemProps) => {
       className={cn(
         'mb-1 flex w-full items-center justify-between rounded-md pl-1 pr-2  text-neutral-500 focus:outline-none dark:text-neutral-300',
         {
-          'bg-primary-50 dark:bg-primary-800 text-primary-500 dark:text-primary-50':
+          'bg-primary-50 text-primary-500 dark:bg-primary-800 dark:text-primary-50':
             activePrimary,
           'hover:text-neutral-800 dark:hover:text-neutral-400': inActive,
           'hover:bg-neutral-100 dark:hover:bg-neutral-800':

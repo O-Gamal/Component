@@ -6,56 +6,58 @@ import {
   selectIsExpanded,
   selectIsToggled,
 } from '@/state/slices/config';
+import { Theme } from '@/types/config.types';
 import { cn } from '@/utils/classNames';
 import { useMediaQuery } from '@uidotdev/usehooks';
+import gsap from 'gsap';
 import { useTheme } from 'next-themes';
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const { theme } = useTheme();
   const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)');
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const isExpanded = useSelector(selectIsExpanded);
   const isToggled = useSelector(selectIsToggled);
   const dir = useSelector(selectDir);
 
+  useEffect(() => {
+    if (!isSmallDevice) {
+      gsap.to(containerRef.current, {
+        duration: 0.5,
+        width: isExpanded ? 'calc(100vw - 19rem)' : 'calc(100vw - 7rem)',
+        left: dir === 'ltr' ? (isExpanded ? '18rem' : '6rem') : '1rem',
+        right: dir === 'rtl' ? (isExpanded ? '18rem' : '6rem') : '1rem',
+        ease: 'power3.out',
+      });
+    } else {
+      gsap.to(containerRef.current, {
+        duration: 0.5,
+        width: '100vw',
+        left: 0,
+        right: 0,
+        ease: 'power3.out',
+      });
+    }
+  }, [isExpanded, dir, isSmallDevice]);
+
   return (
     <main dir={dir}>
       <Sidebar
-        className={cn(
-          'absolute top-[1rem] z-50 h-[calc(100vh-2rem)] transition-[width] duration-300',
-          {
-            'left-[1rem]': dir === 'ltr',
-            'right-[1rem]': dir === 'rtl',
-            'transition-transform duration-300 ease-in-out will-change-transform':
-              isSmallDevice,
-            '-translate-x-[20rem]':
-              dir === 'ltr' && isSmallDevice && !isToggled,
-            'translate-x-0': isSmallDevice && isToggled,
-            'translate-x-[20rem]': dir === 'rtl' && isSmallDevice && !isToggled,
-          },
-          isExpanded ? 'w-[16rem]' : 'w-[4rem]'
-        )}
+        className={cn('absolute top-[1rem] z-50 h-[calc(100vh-2rem)]')}
         isExpanded={isExpanded}
+        isToggled={isToggled}
+        isSmallDevice={isSmallDevice}
         dir={dir}
-        theme={theme as 'light' | 'dark'}
+        theme={theme as Theme}
       />
       <section
+        ref={containerRef}
         className={cn(
-          'transition-[left width] absolute top-0 h-screen duration-300 md:top-[1rem] md:h-[calc(100vh-2rem)]',
-          isExpanded
-            ? {
-                'left-0 w-screen md:left-[18rem] md:w-[calc(100vw-19rem)]':
-                  dir === 'ltr',
-                'left-0 w-screen md:right-[18rem] md:w-[calc(100vw-19rem)]':
-                  dir === 'rtl',
-              }
-            : {
-                'left-0 w-screen md:left-[6rem] md:w-[calc(100vw-7rem)]':
-                  dir === 'ltr',
-                'left-0 w-screen md:right-[6rem] md:w-[calc(100vw-7rem)]':
-                  dir === 'rtl',
-              }
+          'absolute top-0 h-screen md:top-[1rem] md:h-[calc(100vh-2rem)]'
         )}
       >
         {children}

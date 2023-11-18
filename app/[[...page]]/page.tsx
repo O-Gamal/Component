@@ -36,7 +36,7 @@ export default function Home() {
     <section className='h-full w-full space-y-4 overflow-clip rounded-lg bg-white p-4 shadow-lg ring-1 ring-neutral-200 dark:bg-neutral-800/50 dark:ring-neutral-800'>
       {isSmallDevice && (
         <button
-          className='bg-primary-100 text-primary-500 rounded-md px-4 py-2 text-sm font-medium'
+          className='rounded-md bg-primary-100 px-4 py-2 text-sm font-medium text-primary-500'
           onClick={() => dispatch(setIsToggled(true))}
         >
           Toggle

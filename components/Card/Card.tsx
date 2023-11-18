@@ -1,12 +1,26 @@
 import { cn } from '@/utils/classNames';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 
-type FeedbackCardProps = {
+type CardProps = {
   className?: string;
   isExpanded?: boolean;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  button: {
+    title: string;
+    onClick: () => void;
+  };
 };
 
-const FeedbackCard = ({ className, isExpanded }: FeedbackCardProps) => {
+const Card = ({
+  className,
+  isExpanded,
+  title,
+  description,
+  icon,
+  button,
+}: CardProps) => {
   return (
     <section
       className={cn(
@@ -23,13 +37,13 @@ const FeedbackCard = ({ className, isExpanded }: FeedbackCardProps) => {
           }
         )}
       >
-        <ChatBubbleBottomCenterTextIcon className='h-[18px] w-[18px]' />
+        {icon}
         <h5
           className={cn('text-sm', {
             hidden: !isExpanded,
           })}
         >
-          Help us improve
+          {title}
         </h5>
       </div>
       <div
@@ -38,14 +52,16 @@ const FeedbackCard = ({ className, isExpanded }: FeedbackCardProps) => {
         })}
       >
         <p className='mb-2 text-xs leading-relaxed text-neutral-500 dark:text-neutral-300'>
-          Your feedback means everything to us. Please take a moment to share
-          them.
+          {description}
         </p>
-        <button className='w-full rounded-md border border-neutral-300 p-2 text-xs text-neutral-600 transition-colors hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-700'>
-          Share your Feedback
+        <button
+          className='w-full rounded-md border border-neutral-300 p-2 text-xs text-neutral-600 transition-colors hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-700'
+          onClick={button.onClick}
+        >
+          {button.title}
         </button>
       </div>
     </section>
   );
 };
-export default FeedbackCard;
+export default Card;

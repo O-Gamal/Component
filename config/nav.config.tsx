@@ -1,4 +1,3 @@
-import { NavItemType } from './Sidebar.types';
 import {
   HomeIcon,
   ChartBarSquareIcon,

@@ -1,7 +1,5 @@
+import { Dir } from '@/types/config.types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-type Theme = 'light' | 'dark';
-type Dir = 'ltr' | 'rtl';
 
 type ConfigState = {
   dir: Dir;
