@@ -39,7 +39,7 @@ const Card = ({
       >
         {icon}
         <h5
-          className={cn('text-sm', {
+          className={cn('text-xs font-medium md:text-sm', {
             hidden: !isExpanded,
           })}
         >
@@ -47,7 +47,7 @@ const Card = ({
         </h5>
       </div>
       <div
-        className={cn('p-2.5', {
+        className={cn('p-2 md:p-2.5', {
           hidden: !isExpanded,
         })}
       >

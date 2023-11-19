@@ -21,7 +21,7 @@ export default function RootLayout({
         className={cn(
           GeistMono.variable,
           GeistSans.variable,
-          'relative bg-gray-100 font-sans dark:bg-neutral-900 dark:text-white'
+          'relative h-screen w-screen overflow-clip bg-gray-100 font-sans dark:bg-neutral-900 dark:text-white'
         )}
       >
         <Providers>{children}</Providers>

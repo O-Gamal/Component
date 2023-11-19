@@ -64,7 +64,7 @@ const Sidebar = ({
   useEffect(() => {
     gsap.to(ref.current, {
       duration: 0.5,
-      width: isExpanded ? '16rem' : '4rem',
+      width: isExpanded ? (isSmallDevice ? '13rem' : '16rem') : '4rem',
       ease: 'power3.out',
     });
   }, [isExpanded]);
@@ -78,10 +78,11 @@ const Sidebar = ({
       ref={ref}
     >
       <section>
-        <div className='mx-auto w-fit py-12'>
+        <div className='mx-auto w-fit py-8 md:py-12'>
           <Logo
             inverse={theme === 'dark'}
             variant={isExpanded ? 'full-lockup' : 'icon-only'}
+            size={isSmallDevice ? 'medium' : 'large'}
           />
         </div>
         <section>
@@ -130,6 +131,7 @@ const Sidebar = ({
           name='Mohamed Khalil'
           title='HR Manager'
           isExpanded={isExpanded}
+          isSmallDevice={isSmallDevice}
           dir={dir}
         />
       </section>

@@ -21,7 +21,7 @@ const NavItem = ({ item, secondary, isExpanded, dir }: NavItemProps) => {
   return (
     <Link
       className={cn(
-        'mb-1 flex w-full items-center justify-between rounded-md pl-1 pr-2  text-neutral-500 focus:outline-none dark:text-neutral-300',
+        'flex w-full items-center justify-between rounded-md pl-1 pr-2 text-sm  text-neutral-500 focus:outline-none dark:text-neutral-300 md:mb-1 md:text-base',
         {
           'bg-primary-50 text-primary-500 dark:bg-primary-800 dark:text-primary-50':
             activePrimary,
@@ -33,7 +33,7 @@ const NavItem = ({ item, secondary, isExpanded, dir }: NavItemProps) => {
       )}
       href={item.href}
     >
-      <div className='flex h-10 items-center gap-3 px-2.5'>
+      <div className='flex h-10 items-center gap-2 px-2.5 md:gap-3'>
         <span>{item.icon}</span>
         <span
           className={cn({

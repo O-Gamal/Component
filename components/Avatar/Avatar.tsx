@@ -7,7 +7,8 @@ type AvatarProps = {
   alt: string;
   name: string;
   title: string;
-  isExpanded?: boolean;
+  isExpanded: boolean;
+  isSmallDevice: boolean;
   dir: 'ltr' | 'rtl';
 };
 
@@ -18,6 +19,7 @@ const Avatar = ({
   name,
   title,
   isExpanded,
+  isSmallDevice,
   dir,
 }: AvatarProps) => {
   return (
@@ -41,8 +43,8 @@ const Avatar = ({
         })}
       >
         <div>
-          <h5 className='text-sm font-semibold text-neutral-700 dark:text-neutral-300'>
-            {name}
+          <h5 className=' text-sm font-semibold text-neutral-700 dark:text-neutral-300'>
+            {isSmallDevice ? name.split(' ')[0] : name}
           </h5>
           <p className='text-xs text-neutral-500 dark:text-neutral-400'>
             {title}

@@ -8,7 +8,7 @@ import {
   Cog6ToothIcon,
 } from '@heroicons/react/24/outline';
 
-export const iconClassName = 'h-5 w-5';
+export const iconClassName = 'w-4 h-4 md:h-5 md:w-5';
 
 export const NavItems = {
   primary: [
