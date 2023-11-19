@@ -5,16 +5,20 @@ import {
   selectDir,
   selectIsExpanded,
   selectIsToggled,
+  setIsToggled,
 } from '@/state/slices/config';
 import { Theme } from '@/types/config.types';
 import { cn } from '@/utils/classNames';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import gsap from 'gsap';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const { theme } = useTheme();
   const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)');
 
@@ -23,6 +27,15 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const isExpanded = useSelector(selectIsExpanded);
   const isToggled = useSelector(selectIsToggled);
   const dir = useSelector(selectDir);
+
+  const handleRouteChange = () => {
+    if (isToggled) {
+      dispatch(setIsToggled(false));
+    }
+  };
+  useEffect(() => {
+    handleRouteChange();
+  }, [router]);
 
   useEffect(() => {
     if (!isSmallDevice) {
@@ -34,12 +47,11 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
         ease: 'power3.out',
       });
     } else {
-      gsap.to(containerRef.current, {
-        duration: 0.5,
+      gsap.set(containerRef.current, {
         width: '100vw',
+        height: '100vh',
         left: 0,
         right: 0,
-        ease: 'power3.out',
       });
     }
   }, [isExpanded, dir, isSmallDevice]);

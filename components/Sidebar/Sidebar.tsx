@@ -62,11 +62,17 @@ const Sidebar = ({
   }, [isToggled, dir, isSmallDevice]);
 
   useEffect(() => {
-    gsap.to(ref.current, {
-      duration: 0.5,
-      width: isExpanded ? (isSmallDevice ? '13rem' : '16rem') : '4rem',
-      ease: 'power3.out',
-    });
+    if (!isSmallDevice) {
+      gsap.to(ref.current, {
+        duration: 0.5,
+        width: isExpanded ? '16rem' : '4rem',
+        ease: 'power3.out',
+      });
+    } else {
+      gsap.set(ref.current, {
+        width: isExpanded ? '13rem' : '4rem',
+      });
+    }
   }, [isExpanded]);
 
   return (
