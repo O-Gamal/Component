@@ -47,7 +47,9 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main dir={dir}>
       <Sidebar
-        className={cn('absolute top-[1rem] z-50 h-[calc(100vh-2rem)]')}
+        className={cn(
+          'absolute top-[1rem] z-50 h-[calc(100vh-2rem)] overflow-scroll'
+        )}
         isExpanded={isExpanded}
         isToggled={isToggled}
         isSmallDevice={isSmallDevice}
