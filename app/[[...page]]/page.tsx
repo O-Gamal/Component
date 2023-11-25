@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/Button';
 import { Switch } from '@/components/Switch';
 import {
   selectDir,
@@ -53,6 +54,14 @@ export default function Home() {
         checked={theme === 'dark'}
         onChange={onToggleTheme}
       />
+      <Button
+        variant='primary'
+        shape='circular'
+        leftIcon='camera'
+        rightIcon='caret'
+      >
+        Button
+      </Button>
     </section>
   );
 }
