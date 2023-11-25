@@ -36,12 +36,14 @@ export default function Home() {
   return (
     <section className='h-full w-full space-y-4 overflow-clip rounded-lg bg-white p-4 shadow-lg ring-1 ring-neutral-200 dark:bg-neutral-800/50 dark:ring-neutral-800'>
       {isSmallDevice && (
-        <button
-          className='rounded-md bg-primary-100 px-4 py-2 text-sm font-medium text-primary-500'
+        <Button
+          size='sm'
+          variant='secondary'
+          rightIcon='caret'
           onClick={() => dispatch(setIsToggled(true))}
         >
           Toggle
-        </button>
+        </Button>
       )}
       <Switch
         label='expanded'
@@ -54,14 +56,6 @@ export default function Home() {
         checked={theme === 'dark'}
         onChange={onToggleTheme}
       />
-      <Button
-        variant='primary'
-        shape='circular'
-        leftIcon='camera'
-        rightIcon='caret'
-      >
-        Button
-      </Button>
     </section>
   );
 }

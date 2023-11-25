@@ -54,7 +54,16 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
         right: 0,
       });
     }
-  }, [isExpanded, dir, isSmallDevice]);
+  }, [isExpanded, isSmallDevice]);
+
+  useEffect(() => {
+    !isSmallDevice &&
+      gsap.set(containerRef.current, {
+        width: isExpanded ? 'calc(100vw - 19rem)' : 'calc(100vw - 7rem)',
+        left: dir === 'ltr' ? (isExpanded ? '18rem' : '6rem') : '1rem',
+        right: dir === 'rtl' ? (isExpanded ? '18rem' : '6rem') : '1rem',
+      });
+  }, [dir]);
 
   return (
     <main dir={dir}>

@@ -24,7 +24,7 @@ const Button = forwardRef<ButtonElement, ButtonProps>(
     const iconSize = {
       lg: 'h-6 w-6',
       md: 'h-5 w-5',
-      sm: 'h-4 w-4',
+      sm: 'h-3 w-3',
     }[size];
 
     const shapeStyle = {
@@ -36,7 +36,7 @@ const Button = forwardRef<ButtonElement, ButtonProps>(
     const buttonSize = {
       lg: 'gap-4 px-8 py-4 text-lg font-medium',
       md: 'gap-3 px-6 py-3.5 text-base font-medium',
-      sm: 'gap-1 px-4 py-2 text-xs',
+      sm: 'gap-1 px-4 py-2 text-sm',
     }[size];
 
     const colorVariantClasses = {
