@@ -56,6 +56,9 @@ export default function Home() {
         checked={theme === 'dark'}
         onChange={onToggleTheme}
       />
+      <Button variant='outlined' color='success'>
+        Test Button
+      </Button>
     </section>
   );
 }
